@@ -29,6 +29,7 @@ header {
      position: absolute;
      width: 100% !important;
      font-size: 1rem;
+     color: #fff;
  }
 
  p {

@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <Nav />
-    <HelloWorld />
+    <Tools />
+    <PathVisualizer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import Nav from './components/Nav.vue'
+import Tools from './components/Tools.vue'
+import PathVisualizer from './components/PathVisualizer/PathVisualizer.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    Nav
+    Nav,
+    Tools,
+    PathVisualizer
   }
 }
 </script>
@@ -20,7 +23,6 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #fff;
   height: 100vh;
 
 }
