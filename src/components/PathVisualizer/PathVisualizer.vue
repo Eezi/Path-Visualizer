@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <Node />
+    <Node v-for="node in this.grid" :key="node"></Node>
   </div>
 </template>
 
@@ -14,12 +14,13 @@ export default {
       start_node_column: 15,
       finish_node_row: 15,
       finish_node_column: 25
+
     }
+
   },
   methods: {
     gridInitializer() {
       const grid = [];
-      console.log('terve')
       for(let row = 0; row < 20; row++) {
         const currentRow = [];
         for(let column = 0; column < 50; column++){
@@ -31,6 +32,9 @@ export default {
       }
        
       return grid;
+    },
+    paska() {
+      console.log(this.start_node_row)
     },
     createNode: (col, row) => {
         return {
@@ -45,6 +49,12 @@ export default {
         }
     }
   },
+  mounted(){
+   const node = this.gridInitializer();
+   this.grid.push(node);
+   console.log('toimiko', this.grid )
+ },
+ 
   components: {
     Node
   }
