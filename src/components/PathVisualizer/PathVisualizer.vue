@@ -1,15 +1,21 @@
 <template>
   <div class="container" >
-    <Node v-for="node in this.grid" :key="node"></Node>
+   <div v-for="row in this.grid" :key="row.col">
+      <Node v-for="col in row" :key="col.col" />
+      
+
+   </div>
+   
+   
   </div>
 </template>
 
 <script>
 import Node from './Node/Node.vue'
 export default {
-  data: () => {
+  data() {
     return {
-      grid: [],
+      grid: {},
       start_node_row: 10,
       start_node_column: 15,
       finish_node_row: 15,
@@ -19,29 +25,26 @@ export default {
 
   },
   methods: {
-    gridInitializer() {
-      const grid = [];
-      for(let row = 0; row < 20; row++) {
-        const currentRow = [];
-        for(let column = 0; column < 50; column++){
-          
-          currentRow.push(row, column);
-        }
-         grid.push(currentRow);
-        
+  getInitialGrid(){
+    const gridi = [];
+    for (let row = 0; row < 20; row++) {
+      const currentRow = [];
+      for (let col = 0; col < 47; col++) {
+        currentRow.push(this.createNode(col, row));
       }
-       
-      return grid;
-    },
-    paska() {
-      console.log(this.start_node_row)
-    },
-    createNode: (col, row) => {
+      gridi.push(currentRow);
+    }
+   
+    
+    return gridi;
+  },
+
+  createNode(col, row) {
         return {
           col, 
           row,
-          isStart: col == start_node_column && row == start_node_row,
-          isFinish: col == finish_node_column && row == finish_node_row,
+          isStart: col == this.start_node_column && row == this.start_node_row,
+          isFinish: col == this.finish_node_column && row == this.finish_node_row,
           isWall: false,
           distance: Infinity,
           isVisited: false,
@@ -49,10 +52,11 @@ export default {
         }
     }
   },
-  mounted(){
-   const node = this.gridInitializer();
-   this.grid.push(node);
-   console.log('toimiko', this.grid )
+
+ mounted() {
+  const gridi = this.getInitialGrid();
+ this.grid = gridi;
+   console.log('wud?', this.grid)
  },
  
   components: {
@@ -64,7 +68,8 @@ export default {
 
 <style scoped>
 .container {
-    height: 74vh;
-    outline: 1px solid rgb(115, 201, 235);;
+   height: 73vh;
+   
+    /*outline: 1px solid rgb(4, 81, 112);*/
 }
 </style>
