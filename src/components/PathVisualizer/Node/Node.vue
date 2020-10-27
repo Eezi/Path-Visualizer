@@ -18,4 +18,36 @@ export default {
     height: 30px;
     width: 30px;
 }
+
+.node:active {
+  background: green;
+}
+
+.node {
+  animation: colorEffect 1.5s ease-out alternate;
+  animation-iteration-count: 1;
+  
+}
+@keyframes colorEffect {
+   0% {
+     transform: scale(0.3);
+     background: black;
+     border-radius: 100%;
+   } 
+   25% {
+     background: #35495e;
+   }
+   50% {
+    transform: scale(.8); 
+     background: #2c5551;
+   }
+   75% {
+     background: #42b883;
+   }
+   100% {
+     transform: scale(1);
+    background: #6ff3b8;
+   }
+
+  } 
 </style>
