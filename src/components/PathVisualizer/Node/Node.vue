@@ -6,7 +6,15 @@
 
 <script>
 export default {
-
+props: {
+  col: Number,
+  row: Number,
+  isFinish: Boolean,
+  
+},
+mounted() {
+  console.log('props', this.col)
+},
 }
 </script>
 

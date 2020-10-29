@@ -1,7 +1,18 @@
 <template>
   <div class="container" >
    <div v-for="row in this.grid" :key="row.col">
-      <Node v-for="col in row" :key="col.col" />
+      <Node 
+      v-for="col in row" :key="col.col" 
+      :col="col.col"
+      :row="col.row"
+      :distance="col.distance"
+      :isFinish="col.isFinish"
+      :isStart="col.isStart"
+      :isVisited="col.isVisited"
+      :isWall="col.isWall"
+      :previousNode="col.previousNode"
+
+      />
       
 
    </div>
