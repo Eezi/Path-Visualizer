@@ -27,10 +27,10 @@ export default {
   data() {
     return {
       grid: {},
-      start_node_row: 10,
-      start_node_column: 15,
-      finish_node_row: 15,
-      finish_node_column: 25
+      start_node_row: 8,
+      start_node_column: 6,
+      finish_node_row: 8,
+      finish_node_column: 40
 
     }
 
@@ -50,6 +50,10 @@ export default {
     return gridi;
   },
 
+  animateNodes() {
+    
+  },
+
   createNode(col, row) {
         return {
           col, 
@@ -61,6 +65,7 @@ export default {
           isVisited: false,
           previousNode: null
         }
+        console.log('start', isStart)
     }
   },
 

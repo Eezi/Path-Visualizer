@@ -1,19 +1,34 @@
 <template>
-  <div class="node">
+  <div 
+  class="node" :style="this.startNode ? { 'background': 'green' } : this.finishNode ? { 'background': 'red' } : null">
 
   </div>
 </template>
 
 <script>
 export default {
+data() {
+  return {
+    startNode: this.isStart,
+    finishNode: this.isFinish
+  }
+  
+},
 props: {
   col: Number,
   row: Number,
   isFinish: Boolean,
+  isStart: Boolean
   
 },
+methods: {
+  setStartingNode() {
+
+  }
+},
 mounted() {
-  console.log('props', this.col)
+  console.log('props', this.startNode)
+
 },
 }
 </script>
