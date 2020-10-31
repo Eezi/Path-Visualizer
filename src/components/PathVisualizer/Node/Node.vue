@@ -1,6 +1,5 @@
 <template>
-  <div 
-  class="node" :style="this.startNode ? { 'background': 'green' } : this.finishNode ? { 'background': 'red' } : null">
+  <div class="node" :style="this.visited ? activeAnimate : null">
 
   </div>
 </template>
@@ -8,9 +7,19 @@
 <script>
 export default {
 data() {
-  return {
+return {
+  activeAnimate: {
+    animation: 'colorEffect alternate',
+    animationDirection: 'alternate',
+    animationTimingFunction: 'ease-out',
+    animationDuration: '2s',
+    animationIterationCount: 1,
+    animationFillMode: 'forwards'
+    },
+  
     startNode: this.isStart,
-    finishNode: this.isFinish
+    finishNode: this.isFinish,
+    visited: this.isVisited
   }
   
 },
@@ -18,18 +27,27 @@ props: {
   col: Number,
   row: Number,
   isFinish: Boolean,
-  isStart: Boolean
+  isStart: Boolean,
+  isVisited: Boolean
   
 },
 methods: {
   setStartingNode() {
 
+  },
+  setNodeVisited() {
+    setTimeout(() => {
+      this.visited = true;
+      console.log('visited', this.visited)
+    }, 3000)
   }
 },
 mounted() {
-  console.log('props', this.startNode)
+  //this.setNodeVisited();
+  
 
 },
+
 }
 </script>
 
@@ -46,7 +64,8 @@ mounted() {
   background: green;
 }
 
-.node {
+
+.node-visited {
   animation: colorEffect 1.5s ease-out alternate;
   animation-iteration-count: 1;
   

@@ -1,4 +1,5 @@
 <template>
+
   <div class="container" >
    <div v-for="row in this.grid" :key="row.col">
       <Node 
@@ -18,7 +19,7 @@
    </div>
    
    
-  </div>
+  </div> 
 </template>
 
 <script>
@@ -50,8 +51,20 @@ export default {
     return gridi;
   },
 
-  animateNodes() {
+  animateNode() {
     
+    const orderedCrid = this.grid.map(r => r.col); 
+    for(let row of this.grid){
+      for(let col of row){
+        setTimeout(() => {
+          col.isVisited = true;
+          console.log('col', col.isVisited)
+        }, 1500)
+        
+        
+      }
+      
+    }
   },
 
   createNode(col, row) {
@@ -65,14 +78,14 @@ export default {
           isVisited: false,
           previousNode: null
         }
-        console.log('start', isStart)
     }
   },
 
  mounted() {
   const gridi = this.getInitialGrid();
- this.grid = gridi;
-   console.log('wud?', this.grid)
+  this.grid = gridi;
+  this.animateNode();
+
  },
  
   components: {
