@@ -1,5 +1,6 @@
 <template>
-
+<div>
+<button @click="this.dijkstran">Visualize</button>
   <div class="container" >
    <div v-for="row in this.grid" :key="row.col">
       <Node 
@@ -20,10 +21,12 @@
    
    
   </div> 
+</div>
 </template>
 
 <script>
 import Node from './Node/Node.vue'
+import { dijkstra } from '../../Algorithm/dijkstra'
 export default {
   data() {
     return {
@@ -50,7 +53,13 @@ export default {
     
     return gridi;
   },
-
+  dijkstran() {
+    const startNode = this.grid[this.start_node_row][this.start_node_column];
+    const finishNode = this.grid[this.finish_node_row][this.finish_node_column];
+    const visitedNodesInOrder = this.dijkstra(this.grid, startNode, finishNode);
+    console.log('visitedNodes', this.visitedNodesInOrder, 'start', startNode, 'finish', finishNode)
+   
+  },
   animateNode() {
     
     const orderedCrid = this.grid.map(r => r.col); 
@@ -84,7 +93,7 @@ export default {
  mounted() {
   const gridi = this.getInitialGrid();
   this.grid = gridi;
-  this.animateNode();
+  //this.animateNode();
 
  },
  
@@ -96,6 +105,12 @@ export default {
 </script>
 
 <style scoped>
+button {
+   border-radius: 5%;
+    padding: 1em;
+    background-color: #42b983;
+    color: #fff;
+}
 .container {
    height: 73vh;
    

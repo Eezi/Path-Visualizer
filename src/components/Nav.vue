@@ -54,10 +54,7 @@ li {
     display: inline-block;
 }
 .visualize {
-    border-radius: 5%;
-    padding: 1em;
-    background-color: #42b983;
-    color: #fff;
+  
     margin-right: 205px;
 }
 .visualize:hover{
