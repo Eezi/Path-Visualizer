@@ -5,12 +5,12 @@
    <div v-for="row in this.grid" :key="row.col">
       <Node 
       v-for="col in row" :key="col.col" 
-      :col="col.col"
+      :col="col"
+      :colNumber="col.col"
       :row="col.row"
       :distance="col.distance"
       :isFinish="col.isFinish"
       :isStart="col.isStart"
-      :isVisited="col.isVisited"
       :isWall="col.isWall"
       :previousNode="col.previousNode"
 
@@ -56,24 +56,22 @@ export default {
   dijkstran() {
     const startNode = this.grid[this.start_node_row][this.start_node_column];
     const finishNode = this.grid[this.finish_node_row][this.finish_node_column];
-    const visitedNodesInOrder = this.dijkstra(this.grid, startNode, finishNode);
-    console.log('visitedNodes', this.visitedNodesInOrder, 'start', startNode, 'finish', finishNode)
+    const visitedNodesInOrder =  dijkstra(this.grid, startNode, finishNode);
+    this.animateDijkstra(visitedNodesInOrder);
    
   },
-  animateNode() {
-    
-    const orderedCrid = this.grid.map(r => r.col); 
-    for(let row of this.grid){
-      for(let col of row){
-        setTimeout(() => {
-          col.isVisited = true;
-          console.log('col', col.isVisited)
-        }, 1500)
-        
-        
-      }
-      
+
+  animateDijkstra(visitedNodesInOrder) {
+    for(let i = 0; i <= visitedNodesInOrder.length; i++) {
+      const node = visitedNodesInOrder[1];
+      setTimeout(() => {
+        node.isVisited = true;
+        console.log('visits', node.isVisited)
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          'node node-visited';
+      }, 10 * i)
     }
+    return;
   },
 
   createNode(col, row) {
@@ -91,8 +89,8 @@ export default {
   },
 
  mounted() {
-  const gridi = this.getInitialGrid();
-  this.grid = gridi;
+  this.grid = this.getInitialGrid();
+
   //this.animateNode();
 
  },

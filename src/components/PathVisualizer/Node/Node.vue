@@ -1,5 +1,5 @@
 <template>
-  <div class="node" :style="this.visited ? activeAnimate : null">
+  <div class="node" :class="setStartingNode">
 
   </div>
 </template>
@@ -8,15 +8,6 @@
 export default {
 data() {
 return {
-  activeAnimate: {
-    animation: 'colorEffect alternate',
-    animationDirection: 'alternate',
-    animationTimingFunction: 'ease-out',
-    animationDuration: '2s',
-    animationIterationCount: 1,
-    animationFillMode: 'forwards'
-    },
-  
     startNode: this.isStart,
     finishNode: this.isFinish,
     visited: this.isVisited
@@ -24,29 +15,37 @@ return {
   
 },
 props: {
-  col: Number,
+  col: Object,
+  colNumber: Number,
   row: Number,
   isFinish: Boolean,
   isStart: Boolean,
   isVisited: Boolean
   
 },
-methods: {
-  setStartingNode() {
-
+computed: {
+   setStartingNode() {
+     return {
+       'start-node': this.isStart,
+       'finish-node': this.isFinish,
+       'node-visited': this.isVisited
+     }
   },
-  setNodeVisited() {
-    setTimeout(() => {
-      this.visited = true;
-      console.log('visited', this.visited)
-    }, 3000)
+  animate() {
+   
+    return  this.visited ? "node-visited" : null
+     
   }
 },
-mounted() {
-  //this.setNodeVisited();
-  
+methods: {
+ 
 
 },
+mounted() {
+},
+updated() {
+  console.log('visited', this.isVisited)
+}
 
 }
 </script>
@@ -60,8 +59,12 @@ mounted() {
     width: 30px;
 }
 
-.node:active {
+.start-node {
   background: green;
+}
+
+.finish-node {
+  background: red;
 }
 
 
