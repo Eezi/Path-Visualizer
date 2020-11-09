@@ -2,15 +2,15 @@
 <div>
 <button @click="this.dijkstran">Visualize</button>
   <div class="container" >
-   <div v-for="row in this.grid" :key="row.col">
+   <div v-for="row in grid" :key="row.col">
       <Node 
       v-for="col in row" :key="col.col" 
-      :col="col"
-      :colNumber="col.col"
+      :col="col.col"
       :row="col.row"
       :distance="col.distance"
       :isFinish="col.isFinish"
       :isStart="col.isStart"
+      :isVisited="col.isVisited"
       :isWall="col.isWall"
       :previousNode="col.previousNode"
 
@@ -63,15 +63,21 @@ export default {
 
   animateDijkstra(visitedNodesInOrder) {
     for(let i = 0; i <= visitedNodesInOrder.length; i++) {
-      const node = visitedNodesInOrder[1];
+     
       setTimeout(() => {
-        node.isVisited = true;
-        console.log('visits', node.isVisited)
-        document.getElementById(`node-${node.row}-${node.col}`).className =
-          'node node-visited';
-      }, 10 * i)
+         const node = visitedNodesInOrder[i];
+         const newGrid = this.grid.slice();
+         node.isVisited = true;
+         const newNode = {
+          ...node,
+          isVisited: true
+        }
+        newGrid[node.row][node.col] = newNode;
+        this.grid = newGrid;
+        console.log('i', i)
+      }, 100 * i)
     }
-    return;
+  
   },
 
   createNode(col, row) {

@@ -1,5 +1,8 @@
 <template>
-  <div class="node" :class="setStartingNode">
+  <div 
+  id="'node'-'this.nodeRow'-'this.nodeCol'"
+  class="node" 
+  :class="setStartingNode">
 
   </div>
 </template>
@@ -10,12 +13,14 @@ data() {
 return {
     startNode: this.isStart,
     finishNode: this.isFinish,
-    visited: this.isVisited
+    visited: false,
+    nodeCol: this.col,
+    nodeRow: this.row
   }
   
 },
 props: {
-  col: Object,
+  col: Number,
   colNumber: Number,
   row: Number,
   isFinish: Boolean,
@@ -23,28 +28,28 @@ props: {
   isVisited: Boolean
   
 },
+watch: {
+    isVisited: (newValue, oldValue) => {
+   }
+},
 computed: {
    setStartingNode() {
      return {
        'start-node': this.isStart,
        'finish-node': this.isFinish,
-       'node-visited': this.isVisited
+       'node-visited': this.isVisited 
      }
   },
-  animate() {
-   
-    return  this.visited ? "node-visited" : null
-     
-  }
 },
 methods: {
- 
+
+
 
 },
-mounted() {
-},
+
 updated() {
-  console.log('visited', this.isVisited)
+  console.log('VISITED', this.isVisited)
+  this.visited = this.isVisited;
 }
 
 }
