@@ -1,8 +1,9 @@
 <template>
   <div 
-  id="'node'-'this.nodeRow'-'this.nodeCol'"
+  v-bind:id="['node', this.row, this.col]"
+  @mousedown="setWall"
   class="node" 
-  :class="setStartingNode">
+  :class="[setStartingNode, wall]">
 
   </div>
 </template>
@@ -15,7 +16,8 @@ return {
     finishNode: this.isFinish,
     visited: false,
     nodeCol: this.col,
-    nodeRow: this.row
+    nodeRow: this.row,
+    isWall: false
   }
   
 },
@@ -25,7 +27,7 @@ props: {
   row: Number,
   isFinish: Boolean,
   isStart: Boolean,
-  isVisited: Boolean
+  isVisited: Boolean,
   
 },
 watch: {
@@ -40,16 +42,24 @@ computed: {
        'node-visited': this.isVisited 
      }
   },
+  wall(){
+    return {
+      'is-wall': this.isWall
+    }
+  }
 },
 methods: {
 
+setWall() {
+  this.isWall = true;
+}
 
-
+},
+mounted() {
 },
 
 updated() {
-  console.log('VISITED', this.isVisited)
-  this.visited = this.isVisited;
+
 }
 
 }
@@ -72,13 +82,22 @@ updated() {
   background: red;
 }
 
+.is-wall {
+  background: #2c3e50;
+}
 
 .node-visited {
-  animation: colorEffect 1.5s ease-out alternate;
+   animation-name: visitedAnimation;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
   animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
   
 }
-@keyframes colorEffect {
+@keyframes visitedAnimation {
    0% {
      transform: scale(0.3);
      background: black;
@@ -97,6 +116,40 @@ updated() {
    100% {
      transform: scale(1);
     background: #6ff3b8;
+   }
+
+  } 
+
+.node-shortest-path{
+   animation-name: shortestAnimation;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  
+}
+@keyframes shortestAnimation {
+   0% {
+     transform: scale(0.3);
+     background: rgb(34, 34, 34);
+     border-radius: 100%;
+   } 
+   25% {
+     background: #424026;
+   }
+   50% {
+    transform: scale(.8); 
+     background: #474b20;
+   }
+   75% {
+     background: #6f8014;
+   }
+   100% {
+     transform: scale(1);
+    background: #fcff66;
    }
 
   } 

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="con">
 <button @click="this.dijkstran">Visualize</button>
   <div class="container" >
    <div v-for="row in grid" :key="row.col">
@@ -10,7 +10,6 @@
       :distance="col.distance"
       :isFinish="col.isFinish"
       :isStart="col.isStart"
-      :isVisited="col.isVisited"
       :isWall="col.isWall"
       :previousNode="col.previousNode"
 
@@ -26,7 +25,7 @@
 
 <script>
 import Node from './Node/Node.vue'
-import { dijkstra } from '../../Algorithm/dijkstra'
+import { dijkstra, getNodesInShortestPathOrder } from '../../Algorithm/dijkstra'
 export default {
   data() {
     return {
@@ -57,28 +56,45 @@ export default {
     const startNode = this.grid[this.start_node_row][this.start_node_column];
     const finishNode = this.grid[this.finish_node_row][this.finish_node_column];
     const visitedNodesInOrder =  dijkstra(this.grid, startNode, finishNode);
-    this.animateDijkstra(visitedNodesInOrder);
+    const shortestPathOrder = getNodesInShortestPathOrder(finishNode)
+    this.animateDijkstra(visitedNodesInOrder, shortestPathOrder);
    
   },
 
-  animateDijkstra(visitedNodesInOrder) {
+  animateDijkstra(visitedNodesInOrder, shortestPathOrder) {
     for(let i = 0; i <= visitedNodesInOrder.length; i++) {
-     
+      if(i === visitedNodesInOrder.length){
+         setTimeout(() => {
+          this.animateShortestPath(shortestPathOrder);
+        }, 10 * i);
+      }
       setTimeout(() => {
-         const node = visitedNodesInOrder[i];
-         const newGrid = this.grid.slice();
-         node.isVisited = true;
-         const newNode = {
-          ...node,
-          isVisited: true
-        }
-        newGrid[node.row][node.col] = newNode;
-        this.grid = newGrid;
-        console.log('i', i)
-      }, 100 * i)
-    }
-  
+          const node = visitedNodesInOrder[i];
+          console.log('node', node)
+          if(node){
+            document.getElementById(`node,${node.row},${node.col}`).className =
+            'node node-visited';
+          }
+          
+        }, 10 * i); 
+      
+      }
+     
   },
+
+  animateShortestPath(visitedNodesInOrder) {
+    for(let i = 0; i <= visitedNodesInOrder.length; i++){
+       setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        if(node){
+        document.getElementById(`node,${node.row},${node.col}`).className =
+          'node node-shortest-path';
+        }
+      }, 50 * i);
+    }
+
+    },
+  
 
   createNode(col, row) {
         return {
@@ -97,7 +113,7 @@ export default {
  mounted() {
   this.grid = this.getInitialGrid();
 
-  //this.animateNode();
+  
 
  },
  
@@ -114,6 +130,10 @@ button {
     padding: 1em;
     background-color: #42b983;
     color: #fff;
+    margin: auto;
+}
+.con{
+  display: block;
 }
 .container {
    height: 73vh;

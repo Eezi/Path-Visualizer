@@ -63,3 +63,13 @@ function getUnvisitedNeighbors(node, grid) {
   if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
   return neighbors.filter(neighbor => !neighbor.isVisited);
 }
+
+export function getNodesInShortestPathOrder(finishNode) {
+  const nodesInShortestPathOrder = [];
+  let currentNode = finishNode;
+  while (currentNode !== null) {
+    nodesInShortestPathOrder.unshift(currentNode);
+    currentNode = currentNode.previousNode;
+  }
+  return nodesInShortestPathOrder;
+}
