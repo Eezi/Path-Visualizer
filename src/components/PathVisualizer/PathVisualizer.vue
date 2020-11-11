@@ -1,5 +1,5 @@
 <template>
-<div class="con">
+<div>
 <button @click="this.dijkstran">Visualize</button>
   <div class="container" >
    <div v-for="row in grid" :key="row.col">
@@ -93,7 +93,20 @@ export default {
       }, 50 * i);
     }
 
-    },
+  },
+
+  getNewGridWithWalls(grid, row, col){
+      const newGrid = grid.slice();
+      const node = newGrid[row][col];
+
+      const newNode = {
+        ...node,
+        isWall: !this.isWall
+      }
+      newGrid[row][col] = newNode;
+      return newGrid;
+
+  },
   
 
   createNode(col, row) {
@@ -130,14 +143,14 @@ button {
     padding: 1em;
     background-color: #42b983;
     color: #fff;
-    margin: auto;
+    margin-left: 45%;
+
 }
-.con{
-  display: block;
-}
+  
+
 .container {
    height: 73vh;
-   
+   margin-left: 1rem;
     /*outline: 1px solid rgb(4, 81, 112);*/
 }
 </style>
