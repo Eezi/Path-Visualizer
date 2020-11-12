@@ -2,6 +2,8 @@
   <div 
   v-bind:id="['node', this.row, this.col]"
   @mousedown="setWall"
+  @mouseenter="mouseEnter"
+  @mouseup="mouseUp"
   class="node" 
   :class="[setStartingNode, wall]">
 
@@ -17,7 +19,8 @@ return {
     visited: false,
     nodeCol: this.col,
     nodeRow: this.row,
-    isWall: false
+    isWall: this.mousePressed,
+    
   }
   
 },
@@ -28,6 +31,10 @@ props: {
   isFinish: Boolean,
   isStart: Boolean,
   isVisited: Boolean,
+  mousePressed: Boolean,
+  handleMouseDown: Function,
+  handleMouseEnter: Function,
+  handleMouseup: Function
   
 },
 watch: {
@@ -52,15 +59,18 @@ methods: {
 
 setWall() {
   this.isWall = true;
+  this.handleMouseDown(this.row, this.col);
+},
+
+mouseEnter() {
+  this.handleMouseEnter(this.row, this.col);
+},
+
+mouseUp() {
+  this.handleMouseup(this.row, this.row);
 }
 
 },
-mounted() {
-},
-
-updated() {
-
-}
 
 }
 </script>

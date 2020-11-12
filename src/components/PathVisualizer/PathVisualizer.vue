@@ -12,7 +12,10 @@
       :isStart="col.isStart"
       :isWall="col.isWall"
       :previousNode="col.previousNode"
-
+      :mousePressed="mousePressed"
+      :handleMouseDown="handleMouseDown"
+      :handleMouseup="handleMouseUp"
+      :handleMouseEnter="handleMouseEnter"
       />
       
 
@@ -33,8 +36,8 @@ export default {
       start_node_row: 8,
       start_node_column: 6,
       finish_node_row: 8,
-      finish_node_column: 40
-
+      finish_node_column: 40,
+      mousePressed: false
     }
 
   },
@@ -76,7 +79,7 @@ export default {
             'node node-visited';
           }
           
-        }, 10 * i); 
+        }, 15 * i); 
       
       }
      
@@ -95,7 +98,7 @@ export default {
 
   },
 
-  getNewGridWithWalls(grid, row, col){
+  getNewGridWithWalls(grid, row, col) {
       const newGrid = grid.slice();
       const node = newGrid[row][col];
 
@@ -106,6 +109,22 @@ export default {
       newGrid[row][col] = newNode;
       return newGrid;
 
+  },
+  
+  handleMouseDown(row, col) {
+    const newGrid = this.getNewGridWithWalls(this.grid, row, col);
+    this.grid = newGrid;
+    this.mousePressed = true;
+  },
+
+  handleMouseEnter(row, col) {
+    if (!this.mouseIsPressed) return;
+    const newGrid = getNewGridWithWallToggled(this.grid, row, col);
+    this.grid = newGrid;
+  },
+
+  handleMouseUp() {
+    this.mousePressed = false;
   },
   
 
