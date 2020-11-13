@@ -1,13 +1,13 @@
 <template>
   <header>
-      <p>Path Visualizer</p>
+      <p>PATH VISUALIZER</p>
 
       <nav>
           <ul>
-              <li class="visualize">Visualize!</li>
-              <li>Dijkstra's Algorithm</li>
+              <p class="visualize">Visualize Dijkstra's Algorithm!</p>
+              <!--<li></li>
               <li>Clear Board</li>
-              <li>Speed</li>
+              <li>Speed</li>-->
           </ul>
       </nav>    
   </header>
@@ -22,8 +22,7 @@ export default {
 <style scoped>
 header {
      background-color: #2c3e50;
-     display: grid;
-     grid-template-columns: repeat(2, auto);
+    display: flex;
      top: 0;
      left: 0;
      position: absolute;
@@ -33,39 +32,31 @@ header {
  }
 
  p {
-     padding: 1em 2em;
+     padding: .5rem 1.5rem;
      display: block;
-     text-transform: uppercase;
+     
      font-weight: bold;
      color: #fff;
      font-size: 1em;
  }
 
- nav {
-     justify-self: right;
- }
+ 
  ul {
      list-style: none;
  }
 li {
     border-radius: 2%;
     display: inline;
-    padding: 1em 2em;
+   
     display: inline-block;
 }
-.visualize {
-  
-    margin-right: 205px;
-}
-.visualize:hover{
+
+/*.visualize:hover{
     background-color: #338560;
     color: #fff;
     cursor: pointer;
-}
-li:hover {
-    color: #42b983;
-    cursor: pointer;
-}
+}*/
+
 
 </style>>
  

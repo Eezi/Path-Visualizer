@@ -164,6 +164,7 @@ button {
     background-color: #42b983;
     color: #fff;
     margin-left: 45%;
+    border: none;
 }
 
 .rows {

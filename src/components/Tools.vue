@@ -35,7 +35,7 @@ export default {
     
 }
 .marks {
-    padding: 150px 50px;
+    padding: 118px 50px;
     display: flex;
     flex-direction: row;
     justify-content: center;

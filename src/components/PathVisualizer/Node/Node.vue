@@ -6,7 +6,8 @@
   @mouseup="mouseUp"
   class="node" 
   :class="[setStartingNode, wall]">
-
+<unicon v-if="this.isStart" name="arrow-circle-right"></unicon>
+<unicon v-if="this.isFinish" name="crosshair"></unicon>
   </div>
 </template>
 
@@ -86,14 +87,10 @@ mouseUp() {
     width: 30px;
 }
 
-.start-node {
-  background: green;
+.unicon svg{
+  height: 31px;
+  width: 31px;
 }
-
-.finish-node {
-  background: red;
-}
-
 .is-wall {
   animation-name: wallAnimation;
   animation-duration: .3s;
