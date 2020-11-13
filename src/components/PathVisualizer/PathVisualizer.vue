@@ -2,7 +2,7 @@
 <div>
 <button @click="this.dijkstran">Visualize</button>
   <div class="container" >
-   <div v-for="row in grid" :key="row.col">
+   <div class="rows" v-for="row in grid" :key="row.col">
       <Node 
       v-for="col in row" :key="col.col" 
       :col="col.col"
@@ -79,7 +79,7 @@ export default {
             'node node-visited';
           }
           
-        }, 15 * i); 
+        }, 10 * i); 
       
       }
      
@@ -118,9 +118,10 @@ export default {
   },
 
   handleMouseEnter(row, col) {
-    if (!this.mouseIsPressed) return;
-    const newGrid = getNewGridWithWallToggled(this.grid, row, col);
+    if (this.mousePressed) {
+    const newGrid = this.getNewGridWithWalls(this.grid, row, col);
     this.grid = newGrid;
+    }
   },
 
   handleMouseUp() {
@@ -163,13 +164,12 @@ button {
     background-color: #42b983;
     color: #fff;
     margin-left: 45%;
+}
 
+.rows {
+  display: flex;
 }
   
 
-.container {
-   height: 73vh;
-   margin-left: 1rem;
-    /*outline: 1px solid rgb(4, 81, 112);*/
-}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div 
   v-bind:id="['node', this.row, this.col]"
-  @mousedown="setWall"
+  @mousedown="mouseDown"
   @mouseenter="mouseEnter"
   @mouseup="mouseUp"
   class="node" 
@@ -19,7 +19,6 @@ return {
     visited: false,
     nodeCol: this.col,
     nodeRow: this.row,
-    isWall: this.mousePressed,
     
   }
   
@@ -28,6 +27,7 @@ props: {
   col: Number,
   colNumber: Number,
   row: Number,
+  isWall: Boolean,
   isFinish: Boolean,
   isStart: Boolean,
   isVisited: Boolean,
@@ -57,17 +57,19 @@ computed: {
 },
 methods: {
 
-setWall() {
-  this.isWall = true;
+mouseDown(){
   this.handleMouseDown(this.row, this.col);
+  //this.isWall = true;
 },
 
 mouseEnter() {
+ 
   this.handleMouseEnter(this.row, this.col);
 },
 
 mouseUp() {
   this.handleMouseup(this.row, this.row);
+ 
 }
 
 },
@@ -93,12 +95,72 @@ mouseUp() {
 }
 
 .is-wall {
-  background: #2c3e50;
+  animation-name: wallAnimation;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  
 }
+@keyframes wallAnimation {
+
+  30% {
+ transform: scale(.4); 
+     border-radius: 50%;
+  }
+  
+   50% {
+    transform: scale(.8); 
+     border-radius: 25%;
+   }
+   
+   100% {
+     transform: scale(1);
+    background: #2c3e50;
+    outline: 1px solid #2c3e50;
+   }
+
+  } 
 
 .node-visited {
    animation-name: visitedAnimation;
   animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  
+}
+@keyframes visitedAnimation {
+   0% {
+     transform: scale(0.3);
+     background: black;
+     border-radius: 100%;
+   } 
+   25% {
+     background: #35495e;
+   }
+   50% {
+    transform: scale(.8); 
+     background: #2c5551;
+   }
+   75% {
+     background: #42b883;
+   }
+   100% {
+     transform: scale(1);
+    background: #6ff3b8;
+   }
+
+  } 
+.node-visited {
+   animation-name: visitedAnimation;
+  animation-duration: .5s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
