@@ -1,6 +1,7 @@
 <template>
   <div 
   v-bind:id="['node', this.row, this.col]"
+  @click="wallOff"
   @mousedown="mouseDown"
   @mouseenter="mouseEnter"
   @mouseup="mouseUp"
@@ -35,7 +36,8 @@ props: {
   mousePressed: Boolean,
   handleMouseDown: Function,
   handleMouseEnter: Function,
-  handleMouseup: Function
+  handleMouseup: Function,
+  handleWallOff: Function
   
 },
 watch: {
@@ -57,6 +59,10 @@ computed: {
   }
 },
 methods: {
+
+wallOff() {
+  this.handleWallOff(this.row, this.col)
+},
 
 mouseDown(){
   this.handleMouseDown(this.row, this.col);

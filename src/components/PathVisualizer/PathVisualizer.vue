@@ -16,6 +16,7 @@
       :handleMouseDown="handleMouseDown"
       :handleMouseup="handleMouseUp"
       :handleMouseEnter="handleMouseEnter"
+      :handleWallOff="handleWallOff"
       />
       
 
@@ -98,17 +99,28 @@ export default {
 
   },
 
-  getNewGridWithWalls(grid, row, col) {
+  getNewGridWithWalls(grid, row, col, wallOff) {
       const newGrid = grid.slice();
       const node = newGrid[row][col];
 
-      const newNode = {
-        ...node,
-        isWall: !this.isWall
-      }
-      newGrid[row][col] = newNode;
-      return newGrid;
+      if(wallOff) {
+        const newNode = {
+          ...node,
+          isWall: false
+        }
+        
+        newGrid[row][col] = newNode;
+        return newGrid;
 
+      } else {
+        const newNode = {
+          ...node,
+          isWall: !this.isWall
+        }
+
+        newGrid[row][col] = newNode;
+        return newGrid;
+      }
   },
   
   handleMouseDown(row, col) {
@@ -128,6 +140,11 @@ export default {
     this.mousePressed = false;
   },
   
+  handleWallOff(row, col){
+    const wallOff = true;
+    const newGrid = this.getNewGridWithWalls(this.grid, row, col, wallOff);
+    this.grid = newGrid;
+  },
 
   createNode(col, row) {
         return {
