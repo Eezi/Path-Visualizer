@@ -74,7 +74,6 @@ export default {
       }
       setTimeout(() => {
           const node = visitedNodesInOrder[i];
-          console.log('node', node)
           if(node){
             document.getElementById(`node,${node.row},${node.col}`).className =
             'node node-visited';
@@ -108,7 +107,7 @@ export default {
           ...node,
           isWall: false
         }
-        
+
         newGrid[row][col] = newNode;
         return newGrid;
 
@@ -119,6 +118,7 @@ export default {
         }
 
         newGrid[row][col] = newNode;
+        console.log('newGrid', newGrid)
         return newGrid;
       }
   },
