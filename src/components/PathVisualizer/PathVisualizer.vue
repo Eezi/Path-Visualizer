@@ -1,6 +1,9 @@
 <template>
 <div>
+<div class="buttons">
 <button @click="this.dijkstran">Visualize</button>
+<!--<button @click="this.createMaze">Create Maze</button>-->
+</div>
   <div class="container" >
    <div class="rows" v-for="row in grid" :key="row.col">
       <Node 
@@ -157,8 +160,24 @@ export default {
           isVisited: false,
           previousNode: null
         }
+    },
+
+    createMaze() {
+      let newRow;
+    const firstRow = this.grid[0];
+    for(let row of this.grid[0]){
+      newRow = {
+        ...row,
+        isWall: true
+      }
+      //console.log('row', row)
+      this.grid[0] = newRow;
     }
+    return newRow
   },
+  },
+
+  
 
  mounted() {
   this.grid = this.getInitialGrid();
@@ -180,7 +199,7 @@ button {
     padding: 1em;
     background-color: #42b983;
     color: #fff;
-    margin-left: 45%;
+   margin-right: 1rem;
     border: none;
 }
 
@@ -188,6 +207,9 @@ button {
   display: flex;
 }
   
-
+.buttons {
+  display: flex;
+  justify-content: center;
+}
 
 </style>
