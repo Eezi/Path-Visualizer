@@ -1,8 +1,9 @@
 <template>
 <div>
 <div class="buttons">
+<button @click="createMaze(grid)">Generate Random Maze</button>
 <button @click="this.dijkstran">Visualize</button>
-<!--<button @click="this.createMaze">Create Maze</button>-->
+<button @click="resetGrid(grid)">Reset Grid</button>
 </div>
   <div class="container" >
    <div class="rows" v-for="row in grid" :key="row.col">
@@ -33,6 +34,7 @@
 <script>
 import Node from './Node/Node.vue'
 import { dijkstra, getNodesInShortestPathOrder } from '../../Algorithm/dijkstra'
+import { createMaze, resetGrid } from '../../Algorithm/mazeAlgo'
 export default {
   data() {
     return {
@@ -65,7 +67,6 @@ export default {
     const visitedNodesInOrder =  dijkstra(this.grid, startNode, finishNode);
     const shortestPathOrder = getNodesInShortestPathOrder(finishNode)
     this.animateDijkstra(visitedNodesInOrder, shortestPathOrder);
-   
   },
 
   animateDijkstra(visitedNodesInOrder, shortestPathOrder) {
@@ -121,7 +122,7 @@ export default {
         }
 
         newGrid[row][col] = newNode;
-        console.log('newGrid', newGrid)
+
         return newGrid;
       }
   },
@@ -161,29 +162,14 @@ export default {
           previousNode: null
         }
     },
-
-    createMaze() {
-      let newRow;
-    const firstRow = this.grid[0];
-    for(let row of this.grid[0]){
-      newRow = {
-        ...row,
-        isWall: true
-      }
-      //console.log('row', row)
-      this.grid[0] = newRow;
-    }
-    return newRow
-  },
+    createMaze,
+    resetGrid
   },
 
   
 
  mounted() {
   this.grid = this.getInitialGrid();
-
-  
-
  },
  
   components: {
