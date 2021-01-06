@@ -1,13 +1,10 @@
 <template>
   <header>
-      <p>PATH VISUALIZER</p>
+      <p class="visualize">Visualize Dijkstra's Algorithm!</p>
 
       <nav>
           <ul>
-              <p class="visualize">Visualize Dijkstra's Algorithm!</p>
-              <!--<li></li>
-              <li>Clear Board</li>
-              <li>Speed</li>-->
+              <li></li>
           </ul>
       </nav>    
   </header>
@@ -22,7 +19,7 @@ export default {
 <style scoped>
 header {
      background-color: #2c3e50;
-    display: flex;
+     display: flex;
      top: 0;
      left: 0;
      position: absolute;

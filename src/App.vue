@@ -3,7 +3,7 @@
   <div id="app">
     <Nav />
     <Tools />
-    <PathVisualizer @animateNode="handleClick"  />
+    <PathVisualizer  />
   </div>
 </template>
 
@@ -18,11 +18,6 @@ export default {
     Tools,
     PathVisualizer
   },
-  methods: {
-    handleClick() {
-      console.loH('tomiko?')
-    }
-  }
 }
 </script>
 

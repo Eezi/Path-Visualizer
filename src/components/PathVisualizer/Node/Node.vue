@@ -110,7 +110,37 @@ mouseUp() {
 }
 @keyframes wallAnimation {
 
+  15% {
+ transform: scale(.15); 
+     border-radius: 80%;
+     background: #a4c9f1;
+  }
+  
   30% {
+ transform: scale(.4); 
+     border-radius: 50%;
+     background: #88a7c9;
+  }
+  
+   50% {
+    transform: scale(.5); 
+    background: #6683a3;
+     border-radius: 35%;
+   }
+   
+  80% {
+    transform: scale(.8); 
+    background: #486079;
+     border-radius: 25%;
+   }
+
+   100% {
+     transform: scale(1);
+    background: #2c3e50;
+    outline: 1px solid #2c3e50;
+   }  
+  /* 
+   30% {
  transform: scale(.4); 
      border-radius: 50%;
   }
@@ -124,7 +154,8 @@ mouseUp() {
      transform: scale(1);
     background: #2c3e50;
     outline: 1px solid #2c3e50;
-   }
+   }*/ 
+
 
   } 
 

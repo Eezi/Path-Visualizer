@@ -1,5 +1,5 @@
 export const createMaze = (grid) => {
-  grid.map((row, index) => {
+  grid.map((row, i) => {
     row.map((node, index) => {
       let randomNumber = getRandomInt(47);
       if (node.col % 3 === 0 && index % 3 === 0) {
@@ -15,6 +15,7 @@ export const resetGrid = (grid) => {
   grid.map((row, index) => {
     row.map((node, index) => {
       node.isWall = false;
+      node.isVisited = false;
     });
   });
 };

@@ -29,13 +29,13 @@ export default {
     right: 0;
     left: 0;
     background-color: #fff;
-    height: 200px;
+    height: 150px;
     color: black;
     
     
 }
 .marks {
-    padding: 118px 50px;
+    padding: 90px 50px;
     display: flex;
     flex-direction: row;
     justify-content: center;
