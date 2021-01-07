@@ -36,7 +36,7 @@ import {
   dijkstra,
   getNodesInShortestPathOrder,
 } from "../../Algorithm/dijkstra";
-import { createMaze, resetGrid } from "../../Algorithm/mazeAlgo";
+import { createMaze } from "../../Algorithm/mazeAlgo";
 export default {
   data() {
     return {
@@ -168,8 +168,7 @@ export default {
       });
     });
     },
-    createMaze,
-    resetGrid,
+    createMaze
   },
 
   mounted() {

@@ -11,15 +11,6 @@ export const createMaze = (grid) => {
   });
 };
 
-export const resetGrid = (grid) => {
-  grid.map((row, index) => {
-    row.map((node, index) => {
-      node.isWall = false;
-      node.isVisited = false;
-    });
-  });
-};
-
 const getRandomInt = (maxNumber) => {
   return Math.floor(Math.random() * Math.floor(maxNumber));
 };
