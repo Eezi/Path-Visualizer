@@ -35,8 +35,8 @@ import Node from "./Node/Node.vue";
 import {
   dijkstra,
   getNodesInShortestPathOrder,
-} from "../../Algorithm/dijkstra";
-import { createMaze } from "../../Algorithm/mazeAlgo";
+} from "../../Algorithm/Dijkstra";
+import { createMaze } from "../../Algorithm/MazeAlgo";
 export default {
   data() {
     return {
