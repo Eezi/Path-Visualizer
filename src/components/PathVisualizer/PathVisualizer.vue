@@ -36,7 +36,7 @@ import {
   dijkstra,
   getNodesInShortestPathOrder,
 } from "../../Algorithm/Dijkstra";
-import { createMaze } from "../../Algorithm/MazeAlgo";
+import { createMaze } from "../../Algorithm/MazeAlgorithm";
 export default {
   data() {
     return {
