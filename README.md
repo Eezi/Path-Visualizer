@@ -1,19 +1,6 @@
-# pathvisualizer
+# Path visualizer
+This path visualizer app has been made by using vue.js and the Dijkstra’s algorithm. 
+The user can draw their own walls or generate random walls and then scan the grid so the algorithm can find the shortest path.
 
-## Project setup
-```
-npm install
-```
+![](/src/assets/pathfinderGif.gif)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
